@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScrapTrade - Buy & Sell Scrap Materials</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo">ScrapTrade</div>
+        <div class="menu">
+            <button onclick="loadPosts()">All Posts</button>
+            <button onclick="loadPosts('sell')">Sell</button>
+            <button onclick="loadPosts('buy')">Buy</button>
+            <button onclick="toggleFilters()">Filter</button>
+            <button onclick="showPostForm('sell')">Post Sell</button>
+            <button onclick="showPostForm('buy')">Post Buy</button>
+        </div>
+    </div>
+    
+    <div class="filter-section" id="filterSection">
+        <select id="categoryFilter" onchange="applyFilters()">
+            <option value="">All Categories</option>
+            <option value="plastic">Plastic</option>
+            <option value="ewaste">E-Waste</option>
+            <option value="metal">Metal</option>
+            <option value="waste-paper">Waste Paper</option>
+            <option value="glass">Glass</option>
+        </select>
+        <input type="text" id="cityFilter" placeholder="Filter by city" oninput="applyFilters()">
+        <button onclick="clearFilters()">Clear Filters</button>
+    </div>
+    
+    <div class="auth-section">
+        <p>🔒 No login required to browse. Click 'View Contact' to simulate login.</p>
+        <button class="auth-btn" onclick="simulateLogin()">Simulate Gmail Login</button>
+        <button class="auth-btn logout" onclick="simulateLogout()" style="display:none;">Logout</button>
+    </div>
+    
+    <div class="post-container" id="postContainer">
+        <div class="loading">Loading posts...</div>
+    </div>
+
+    <!-- Post Form Modal -->
+    <div id="postModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hidePostForm()">&times;</span>
+            <h2 id="modalTitle">Post Ad</h2>
+            <form id="postForm">
+                <input type="hidden" id="postType" name="type">
+                
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="plastic">Plastic</option>
+                        <option value="ewaste">E-Waste</option>
+                        <option value="metal">Metal</option>
+                        <option value="waste-paper">Waste Paper</option>
+                        <option value="glass">Glass</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="details">Details:</label>
+                    <textarea id="details" name="details" placeholder="Describe your scrap material..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="rate">Rate (in Rupees):</label>
+                    <input type="number" id="rate" name="rate" placeholder="Enter rate" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="unit">Unit:</label>
+                    <select id="unit" name="unit" required>
+                        <option value="kg">Per KG</option>
+                        <option value="ton">Per Ton</option>
+                        <option value="piece">Per Piece</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" placeholder="Enter your city" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="userName">Your Name:</label>
+                    <input type="text" id="userName" name="userName" placeholder="Enter your name" required>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Post</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
